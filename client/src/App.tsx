@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css'
-import { Home } from 'pages'
+import { Home, XSSDemo } from 'pages'
 
 function App() {
 
@@ -8,6 +8,7 @@ function App() {
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<Home/>}/>
+                <Route path="/xss-demo" element={<XSSDemo/>}/>
 
             </Routes>
 

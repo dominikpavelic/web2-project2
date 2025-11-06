@@ -1,7 +1,10 @@
 @import "tailwindcss";
 
+@theme {
+    --color-primary: #EDFBC1;
 
+}
 
 body {
-  @apply min-h-screen
+  @apply min-h-screen bg-primary;
 }
