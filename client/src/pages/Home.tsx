@@ -14,12 +14,10 @@ const Home: React.FC = () => {
 
             <div className="grid md:grid-cols-2 gap-8">
                 <div className="card">
-                    <h3>Ranjivost 1: Cross-site scripting (XSS)</h3>
-                    <p>Tip: pohranjeni XSS</p>
-
-                    <div className="border m-2">
-                        <p>Trenutni status:</p>
-                        <span>Ranjivo</span>
+                    <h3 className="text-2xl font-bold text-primary">Ranjivost 1: Cross-site scripting (XSS)</h3>
+                    <div className="bg-gray-100 rounded-md flex items-center gap-2 p-2">
+                        <p className="font-semibold">Trenutni status:</p>
+                        <span className="font-bold rounded-md bg-red-100 text-red-800 px-4 py-2 ">Ranjivo</span>
                     </div>
 
                     <div>
@@ -34,12 +32,10 @@ const Home: React.FC = () => {
                 </div>
 
                 <div className="card">
-                    <h3>Loša kontrola pristupa</h3>
-                    <p>Tip: pohranjeni XSS</p>
-
-                    <div className="border m-2">
-                        <p>Trenutni status:</p>
-                        <span>Ranjivo</span>
+                    <h3 className="text-2xl font-bold text-primary">Ranjivost 2: Loša kontrola pristupa</h3>
+                    <div className="bg-gray-100 rounded-md flex items-center gap-2 p-2">
+                        <p className="font-semibold">Trenutni status:</p>
+                        <span className="font-bold rounded-md bg-red-100 text-red-800 px-4 py-2 ">Ranjivo</span>
                     </div>
 
                     <div>

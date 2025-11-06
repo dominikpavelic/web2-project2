@@ -6,15 +6,14 @@ function App() {
 
     return (
         <BrowserRouter>
-                <NavBar/>
-                <main className="container mx-auto">
-                    <Routes>
-                        <Route path="/" element={<Home/>}/>
-                        <Route path="/xss-demo" element={<XSSDemo/>}/>
+            <NavBar/>
+            <main className="container mx-auto py-8">
+                <Routes>
+                    <Route path="/" element={<Home/>}/>
+                    <Route path="/xss-demo" element={<XSSDemo/>}/>
 
-                    </Routes>
-                </main>
-
+                </Routes>
+            </main>
         </BrowserRouter>
 
     )
