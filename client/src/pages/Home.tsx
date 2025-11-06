@@ -5,15 +5,15 @@ const Home: React.FC = () => {
 
 
     return (
-        <div>
-            <div className="text-center text-black">
+        <div className="space-y-8">
+            <div className="text-center text-white mt-4">
                 <h2 className="text-4xl font-bold">
                     Projekt 2 - Sigurnosne ranjivosti
                 </h2>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-8 mt-8 border-2">
-                <div className="border-2 m-4">
+            <div className="grid md:grid-cols-2 gap-8">
+                <div className="card">
                     <h3>Ranjivost 1: Cross-site scripting (XSS)</h3>
                     <p>Tip: pohranjeni XSS</p>
 
@@ -28,23 +28,12 @@ const Home: React.FC = () => {
                         </button>
                     </div>
 
-                    <Link to="/xss-demo" className="border m-2 p-2 block text-center">
+                    <Link to="/xss-demo" className="btn btn-primary w-full text-center block">
                         Idi na XSS demo
                     </Link>
                 </div>
 
-
-
-
-
-
-
-
-
-
-
-
-                <div className="border-2 m-4">
+                <div className="card">
                     <h3>Loša kontrola pristupa</h3>
                     <p>Tip: pohranjeni XSS</p>
 

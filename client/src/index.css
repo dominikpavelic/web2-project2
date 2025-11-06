@@ -1,10 +1,28 @@
 @import "tailwindcss";
 
 @theme {
-    --color-primary: #EDFBC1;
+    --color-primary: #429EA6;
+    --color-primary-dark: #357D84;
+    --color-white: #F6E8EA
 
 }
 
 body {
   @apply min-h-screen bg-primary;
+}
+
+.card {
+    @apply bg-white rounded-2xl p-8 shadow-xl;
+}
+
+.navbar {
+    @apply bg-white sticky top-0 z-50;
+}
+
+.btn {
+    @apply px-6 py-3 rounded-lg font-semibold transition-colors duration-200;
+}
+
+.btn-primary {
+    @apply bg-primary text-white hover:bg-primary-dark;
 }
