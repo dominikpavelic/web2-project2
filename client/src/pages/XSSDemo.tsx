@@ -16,6 +16,33 @@ const XSSDemo = () => {
         setComments(response.comments);
     }
 
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        if (!commentText || !commentText.trim()) {
+            return;
+        }
+
+        try {
+            await xssApi.addComment(commentText);
+            setCommentText('');
+            await loadComments();
+        } catch (error) {
+            console.error("Failed to add comment:", error);
+        }
+
+    }
+
+    const handleClearComments = async () => {
+        await xssApi.clearComments();
+        await loadComments();
+    }
+
+    const copyToClipboard = (text: string) => {
+        navigator.clipboard.writeText(text).then(() => {
+            alert("Kopirano")
+        });
+    }
+
     return (
         <div className="card max-w-5xl mx-auto">
             <h2 className="text-primary text-3xl font-bold">Cross-site scripting demo</h2>
@@ -32,9 +59,7 @@ const XSSDemo = () => {
                         </code>
                         <button
                             className="btn btn-primary"
-                            onClick={() => {
-                                console.log("copy")
-                            }}
+                            onClick={() => copyToClipboard(`<img src=x onError="alert('XSS Attack!')" alt="attack"/>`)}
                         >
                             Kopriraj
                         </button>
@@ -42,7 +67,7 @@ const XSSDemo = () => {
                 </div>
             </div>
 
-            <form className="m-8">
+            <form className="m-8" onSubmit={handleSubmit}>
                 <label htmlFor="comment" className="block text-lg font-semibold text-gray-700 mb-3">
                     Objavi komentar:
                 </label>
@@ -67,10 +92,10 @@ const XSSDemo = () => {
                 <div className="flex justify-between items-center m-6">
                     <h3 className="text-2xl font-bold text-primary">Komentari:</h3>
                     <button
-                        onClick={() => console.log("komentari obrisani")}
+                        onClick={handleClearComments}
                         className="btn btn-danger"
                     >
-                        Obriši komentare
+                        Obriši sve komentare
                     </button>
                 </div>
 
