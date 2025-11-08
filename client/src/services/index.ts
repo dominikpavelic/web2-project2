@@ -1,0 +1,1 @@
+export { xssApi } from './api';

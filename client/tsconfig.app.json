@@ -19,6 +19,12 @@
     "paths": {
       "pages": [
         "pages"
+      ],
+      "components": [
+        "components"
+      ],
+      "services": [
+        "services"
       ]
     },
     /* Bundler mode */

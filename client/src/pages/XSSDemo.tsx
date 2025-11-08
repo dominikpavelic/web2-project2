@@ -1,8 +1,21 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import type { Comment } from "../types";
+import { xssApi } from "services";
 
 const XSSDemo = () => {
-
+    const [comments, setComments] = useState<Comment[]>([]);
     const [commentText, setCommentText] = useState<string>();
+
+
+    useEffect(() => {
+        loadComments();
+    }, []);
+
+    const loadComments = async () => {
+        const response = await xssApi.getComments();
+        setComments(response.comments);
+    }
+
     return (
         <div className="card max-w-5xl mx-auto">
             <h2 className="text-primary text-3xl font-bold">Cross-site scripting demo</h2>
@@ -23,7 +36,7 @@ const XSSDemo = () => {
                                 console.log("copy")
                             }}
                         >
-                            Copy
+                            Kopriraj
                         </button>
                     </div>
                 </div>
@@ -46,7 +59,7 @@ const XSSDemo = () => {
                 </textarea>
 
                 <button type="submit" className="btn btn-primary mt-4">
-                    Objavi komentar
+                    Objavi
                 </button>
             </form>
 
@@ -61,19 +74,28 @@ const XSSDemo = () => {
                     </button>
                 </div>
 
-                <div className="space-y-4">
-                    <div className="bg-gray-100 border border-gray-300 rounded-lg p-4">
-                        <div className="flex justify-between items-center mb-2">
-                            <strong className="text-primary">Neki korisnik</strong>
-                            <span className="text-sm text-gray-500">{new Date().toLocaleString()}</span>
-                        </div>
+                {comments.length === 0 ? (
+                    <p>Trenutno nema objavljenih komentara.</p>
+                ) : (
+                    <div className="space-y-4">
 
-                        <div className="text-gray-800">
-                            Neki super komentar.
-                        </div>
+                        {comments.map((comment) => (
+                            <div key={comment.id} className="bg-gray-100 border border-gray-300 rounded-lg p-4">
+                                <div className="flex justify-between items-center mb-2">
+                                    <strong className="text-primary">{comment.username}</strong>
+                                    <span className="text-sm text-gray-500">{new Date(comment.timestamp).toLocaleString()}</span>
+                                </div>
+
+                                <div className="text-gray-800">
+                                    <div>{comment.text}</div>
+                                </div>
+                            </div>
+                        ))}
+
                     </div>
 
-                </div>
+                )}
+
             </div>
         </div>
     )

@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Home, XSSDemo } from 'pages'
-import { NavBar } from "./components/NavBar.tsx";
+import { NavBar } from 'components';
 
 function App() {
 
