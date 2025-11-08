@@ -2,6 +2,13 @@ import { useEffect, useState } from "react";
 import type { Comment } from "../types";
 import { xssApi } from "services";
 
+const XSS_EXAMPLES = [
+    `<img src=x onError="alert('XSS Attack!')" alt="attack"/>`,
+    `<img src=x onError="alert(document.cookie)" alt="attack"/>`,
+    `<iframe src="javascript:alert('XSS from iframe')"></iframe>`,
+    `<video src=x onError=alert("XSS from video")></video>`,
+    `<audio src=x onError=alert("XSS from audio")></audio>`,
+];
 const XSSDemo = () => {
     const [comments, setComments] = useState<Comment[]>([]);
     const [commentText, setCommentText] = useState<string>();
@@ -53,17 +60,19 @@ const XSSDemo = () => {
             <div className="bg-gray-100 p-6 rounded-lg mb-8">
                 <h3 className="text-xl font-bold text-secondary">Isprobajte ove XSS napade</h3>
                 <div className="space-y-2">
-                    <div className="flex items-center gap-3 p-3 bg-white rounded-lg">
-                        <code className="flex-1 p-3 text-sm text-red-500 bg-gray-100 rounded overflow-x-auto">
-                            {`<img src=x onError="alert('XSS Attack!')" alt="attack"/>`}
-                        </code>
-                        <button
-                            className="btn btn-primary"
-                            onClick={() => copyToClipboard(`<img src=x onError="alert('XSS Attack!')" alt="attack"/>`)}
-                        >
-                            Kopriraj
-                        </button>
-                    </div>
+                    {XSS_EXAMPLES.map((example, index) => (
+                        <div key={index} className="flex items-center gap-3 p-3 bg-white rounded-lg">
+                            <code className="flex-1 p-3 text-sm text-red-500 bg-gray-100 rounded overflow-x-auto">
+                                {example}
+                            </code>
+                            <button
+                                className="btn btn-primary"
+                                onClick={() => copyToClipboard(example)}
+                            >
+                                Kopriraj
+                            </button>
+                        </div>
+                    ))}
                 </div>
             </div>
 
