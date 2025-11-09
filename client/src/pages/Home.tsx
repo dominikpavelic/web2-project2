@@ -63,8 +63,8 @@ const Home: React.FC = () => {
                         />
                     </div>
 
-                    <Link to="/acces-control-demo" className="btn btn-primary w-full text-center block">
-                        Idi na demo kontrole pristupa
+                    <Link to="/admin" className="btn btn-primary w-full text-center block">
+                        Idi na admin stranicu
                     </Link>
                 </div>
             </div>

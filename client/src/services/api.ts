@@ -29,6 +29,13 @@ const xssApi = {
     }
 };
 
+const accessControlApi = {
+    getAdminData: async () => {
+        const response = await api.get('/access-control/admin');
+        return response.data;
+    }
+}
+
 const configApi = {
     getConfig: async (): Promise<SecurityConfig> => {
         const response = await api.get('/config');
@@ -49,5 +56,6 @@ const configApi = {
 
 export {
     xssApi,
-    configApi
+    configApi,
+    accessControlApi
 };

@@ -66,8 +66,8 @@ const XSSDemo = () => {
             >
                 <strong>XSS status zaštite:</strong>{' '}
                 {config.xssProtection
-                    ? 'Unos je sanitiziran. Aplikacija je zaštićena'
-                    : 'Unos se ne sanitizira. Aplikacije je ranjiva'}
+                    ? 'Unos je sanitiziran. Aplikacija je zaštićena.'
+                    : 'Unos se ne sanitizira. Aplikacije je ranjiva.'}
             </div>
 
             <div className="bg-gray-100 p-6 rounded-lg mb-8">

@@ -14,8 +14,12 @@ const NavBar = () => {
                             Home
                         </Link>
 
-                        <Link to="/xss-demo" className=" hover:text-primary font-medium">
+                        <Link to="/xss-demo" className=" hover:text-primary font-medium mx-4">
                             XSS Demo
+                        </Link>
+
+                        <Link to="/admin" className="hover:text-primary font-medium">
+                            Admin Panel
                         </Link>
                     </div>
                 </div>

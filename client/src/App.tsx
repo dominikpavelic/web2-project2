@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { Home, XSSDemo } from 'pages'
+import { Admin, Home, XSSDemo } from 'pages'
 import { NavBar, SecurityStatus } from 'components';
 import { SecurityProvider } from "contexts";
 
@@ -14,6 +14,7 @@ function App() {
                     <Routes>
                         <Route path="/" element={<Home/>}/>
                         <Route path="/xss-demo" element={<XSSDemo/>}/>
+                        <Route path="/admin" element={<Admin/>}/>
 
                     </Routes>
                 </main>
