@@ -16,4 +16,10 @@ router.post("/xss", (req: Request, res: Response) => {
 
 });
 
+router.post("/access-control", (req: Request, res: Response) => {
+    const {enabled} = req.body;
+    securityConfig.accessControlEnabled = enabled === true || enabled === "true";
+    res.json({success: true, enabled: securityConfig.accessControlEnabled});
+});
+
 export default router;
