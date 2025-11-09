@@ -21,12 +21,13 @@ router.post('/login', (req: Request, res: Response) => {
             success: true,
             user: req.session.user,
         });
-    }
+    } else {
+        res.status(401).json({
+            success: false,
+            error: 'Invalid credentials',
+        });
 
-    res.status(401).json({
-        success: false,
-        error: 'Invalid credentials',
-    });
+    }
 
 });
 
@@ -37,18 +38,18 @@ router.post('/logout', (req: Request, res: Response) => {
                 success: false,
                 error: 'Failed to logout.'
             })
+        } else {
+            res.json({success: true})
         }
-
-        res.json({success: true})
     })
 });
 
 router.get('/current', (req: Request, res: Response) => {
     if (req.session.user) {
         res.json({user: req.session.user})
+    } else {
+        res.status(401).json({user: null})
     }
-
-    res.status(401).json({user: null})
 });
 
 export default router;

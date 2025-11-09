@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { Admin, Home, XSSDemo } from 'pages'
+import { Admin, Home, Login, XSSDemo } from 'pages'
 import { NavBar, SecurityStatus } from 'components';
 import { SecurityProvider } from "contexts";
 import { AuthProvider } from "contexts";
@@ -15,6 +15,7 @@ function App() {
                     <main className="container mx-auto py-8">
                         <Routes>
                             <Route path="/" element={<Home/>}/>
+                            <Route path="/login" element={<Login/>}/>
                             <Route path="/xss-demo" element={<XSSDemo/>}/>
                             <Route path="/admin" element={<Admin/>}/>
                         </Routes>
