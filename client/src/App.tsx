@@ -1,19 +1,22 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Home, XSSDemo } from 'pages'
 import { NavBar } from 'components';
+import { SecurityProvider } from "contexts";
 
 function App() {
 
     return (
         <BrowserRouter>
-            <NavBar/>
-            <main className="container mx-auto py-8">
-                <Routes>
-                    <Route path="/" element={<Home/>}/>
-                    <Route path="/xss-demo" element={<XSSDemo/>}/>
+            <SecurityProvider>
+                <NavBar/>
+                <main className="container mx-auto py-8">
+                    <Routes>
+                        <Route path="/" element={<Home/>}/>
+                        <Route path="/xss-demo" element={<XSSDemo/>}/>
 
-                </Routes>
-            </main>
+                    </Routes>
+                </main>
+            </SecurityProvider>
         </BrowserRouter>
 
     )

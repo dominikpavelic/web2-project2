@@ -1,4 +1,5 @@
 import axios from 'axios';
+import type { SecurityConfig } from "types";
 
 const BASE_URL = 'http://localhost:3000/';
 
@@ -28,5 +29,20 @@ const xssApi = {
     }
 };
 
+const configApi = {
+    getConfig: async (): Promise<SecurityConfig> => {
+        const response = await api.get('/config');
+        return response.data;
+    },
 
-export { xssApi };
+    updateXSSProtection: async (enabled: boolean) => {
+        const response = await api.post('/config/xss', {enabled});
+        return response.data;
+    }
+}
+
+
+export {
+    xssApi,
+    configApi
+};

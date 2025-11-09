@@ -25,6 +25,15 @@
       ],
       "services": [
         "services"
+      ],
+      "contexts": [
+        "contexts"
+      ],
+      "hooks": [
+        "hooks"
+      ],
+      "types": [
+        "types"
       ]
     },
     /* Bundler mode */
