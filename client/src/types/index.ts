@@ -1,4 +1,5 @@
-export type { CommentType } from './commentType.ts';
+export type { CommentType } from './commentType';
 export type { SecurityConfig } from './securityConfig';
-export type { AdminData } from './adminData.ts';
-export type { User } from './user.ts';
+export type { AdminData } from './adminData';
+export type { User } from './user';
+export type { LoginCredentials } from './login';

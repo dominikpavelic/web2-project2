@@ -1,1 +1,2 @@
-export { useSecurity } from "./useSecurity.tsx";
+export { useSecurity } from "./useSecurity";
+export { useAuth } from "./useAuth";

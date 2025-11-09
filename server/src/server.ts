@@ -1,7 +1,7 @@
 import express from 'express';
 import session from "express-session";
 import cors from 'cors';
-import { adminRoutes, commentRoutes, configRoutes } from "routes";
+import { adminRoutes, authRoutes, commentRoutes, configRoutes } from "routes";
 
 const app = express();
 
@@ -22,6 +22,7 @@ app.use(session({
     saveUninitialized: true,
 }));
 
+app.use('/auth', authRoutes);
 app.use('/xss', commentRoutes);
 app.use('/access-control', adminRoutes);
 app.use('/config', configRoutes);

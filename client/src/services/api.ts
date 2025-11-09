@@ -1,5 +1,5 @@
 import axios from 'axios';
-import type { SecurityConfig } from "types";
+import type { LoginCredentials, SecurityConfig } from "types";
 
 const BASE_URL = 'http://localhost:3000/';
 
@@ -53,9 +53,31 @@ const configApi = {
     }
 }
 
+const authApi = {
+    login: async (credentials: LoginCredentials) => {
+        const response = await api.post('/auth/login', credentials);
+        return response.data;
+    },
+
+    logout: async () => {
+        const response = await api.post('/auth/logout');
+        return response.data;
+    },
+
+    getCurrentUser: async () => {
+        try {
+            const response = await api.get('/auth/current');
+            return response.data;
+        } catch (error) {
+            return {user: null};
+        }
+    }
+}
+
 
 export {
     xssApi,
+    accessControlApi,
     configApi,
-    accessControlApi
+    authApi,
 };
