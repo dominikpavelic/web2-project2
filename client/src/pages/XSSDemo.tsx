@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import type { Comment } from "types";
 import { xssApi } from "services";
+import { useSecurity } from "hooks";
+import { Toggle } from "components";
+import * as React from "react";
 
 const XSS_EXAMPLES = [
     `<img src=x onError="alert('XSS Attack!')" alt="attack"/>`,
@@ -10,6 +13,7 @@ const XSS_EXAMPLES = [
     `<audio src=x onError=alert("XSS from audio")></audio>`,
 ];
 const XSSDemo = () => {
+    const {config, toggleXSSProtection} = useSecurity();
     const [comments, setComments] = useState<Comment[]>([]);
     const [commentText, setCommentText] = useState<string>();
 
@@ -53,8 +57,32 @@ const XSSDemo = () => {
     return (
         <div className="card max-w-5xl mx-auto">
             <h2 className="text-primary text-3xl font-bold">Cross-site scripting demo</h2>
-            <div className="p-4 rounded-lg mb-6 bg-red-100 border border-red-400 text-red-800">
-                XSS ranjivost: Ranjivo
+            <div className="mb-8">
+                <div className="card shadow-md">
+                    <div className="flex items-center justify-between">
+                        <div className="flex-1">
+                            <h3 className="text-lg font-semibold text-gray-900 mb-1">
+                                XSS ranjivost
+                            </h3>
+                        </div>
+                        <Toggle
+                            checked={config.xssProtection}
+                            onChange={toggleXSSProtection}
+                            label=""
+                        />
+                    </div>
+
+                    <div className={`mt-4 p-3 rounded-lg text-sm font-medium ${
+                        config.xssProtection
+                            ? 'bg-green-50 text-green-700 border border-green-200'
+                            : 'bg-red-50 text-red-700 border border-red-200'
+                    }`}
+                    >
+                        <div className="flex items-center gap-2">
+                            <span>Status: {config.xssProtection ? 'Zaštićeno' : 'Ranjivo'}</span>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div className="bg-gray-100 p-6 rounded-lg mb-8">
@@ -121,7 +149,11 @@ const XSSDemo = () => {
                                 </div>
 
                                 <div className="text-gray-800">
-                                    <div>{comment.text}</div>
+                                    {config.xssProtection ? (
+                                        <div>{comment.text}</div>
+                                    ) : (
+                                        <div dangerouslySetInnerHTML={{__html: comment.text}}/>
+                                    )}
                                 </div>
                             </div>
                         ))}
