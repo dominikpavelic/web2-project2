@@ -1,4 +1,4 @@
-interface User {
+interface SessionUser {
     id: number;
     username: string;
     role: 'admin' | 'user';
@@ -7,8 +7,8 @@ interface User {
 
 declare module 'express-session' {
     interface SessionData {
-        user?: User
+        user?: SessionUser
     }
 }
 
-export type { User };
+export type { SessionUser };
