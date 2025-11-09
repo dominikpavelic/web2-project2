@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Home, XSSDemo } from 'pages'
-import { NavBar } from 'components';
+import { NavBar, SecurityStatus } from 'components';
 import { SecurityProvider } from "contexts";
 
 function App() {
@@ -9,6 +9,7 @@ function App() {
         <BrowserRouter>
             <SecurityProvider>
                 <NavBar/>
+                <SecurityStatus/>
                 <main className="container mx-auto py-8">
                     <Routes>
                         <Route path="/" element={<Home/>}/>
