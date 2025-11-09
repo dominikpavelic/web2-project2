@@ -1,7 +1,7 @@
 import express from 'express';
 import session from "express-session";
 import cors from 'cors';
-import { commentRoutes, configRoutes } from "routes";
+import { adminRoutes, commentRoutes, configRoutes } from "routes";
 
 const app = express();
 
@@ -23,6 +23,7 @@ app.use(session({
 }));
 
 app.use('/xss', commentRoutes);
+app.use('/access-control', adminRoutes);
 app.use('/config', configRoutes);
 
 app.listen(PORT, () => {

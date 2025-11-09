@@ -42,3 +42,5 @@ router.get('/admin', (req: Request, res: Response) => {
         });
     }
 });
+
+export default router;
