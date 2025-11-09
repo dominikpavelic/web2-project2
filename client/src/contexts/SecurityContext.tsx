@@ -7,6 +7,7 @@ interface SecurityContextType {
     config: SecurityConfig;
     loading: boolean;
     toggleXSSProtection: (enabled: boolean) => Promise<void>;
+    toggleAccessControl: (enabled: boolean) => Promise<void>;
     refreshConfig: () => Promise<void>;
 }
 
@@ -16,6 +17,7 @@ const SecurityContext = createContext<SecurityContextType | undefined>(undefined
 const SecurityProvider = ({children}: { children: ReactNode }) => {
     const [config, setConfig] = useState<SecurityConfig>({
         xssProtection: false,
+        accessControlEnabled: false,
     });
     const [loading, setLoading] = useState(true);
 
@@ -39,9 +41,14 @@ const SecurityProvider = ({children}: { children: ReactNode }) => {
         await refreshConfig();
     }
 
+    const toggleAccessControl = async (enabled: boolean) => {
+        await configApi.updateAccessControl(enabled);
+        await refreshConfig();
+    }
+
     return (
         <SecurityContext.Provider
-            value={{config, loading, toggleXSSProtection, refreshConfig}}
+            value={{config, loading, toggleXSSProtection, toggleAccessControl, refreshConfig}}
         >
             {children}
         </SecurityContext.Provider>

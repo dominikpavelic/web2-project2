@@ -2,7 +2,7 @@ import { useSecurity } from "hooks";
 import { Toggle } from "./Toggle.tsx";
 
 const SecurityStatus = () => {
-    const {config, toggleXSSProtection} = useSecurity();
+    const {config, toggleXSSProtection, toggleAccessControl} = useSecurity();
 
     return (
         <div className="bg-white max-w-7xl mx-auto px-8 py-4 rounded-xl shadow-lg mt-4 flex gap-8 flex-wrap">
@@ -18,6 +18,19 @@ const SecurityStatus = () => {
                   {config.xssProtection ? 'ZAŠTIĆENO' : 'RANJIVO'}
                 </span>
                 <Toggle checked={config.xssProtection} onChange={toggleXSSProtection} label={""}/>
+            </div>
+            <div className="flex items-center gap-3">
+                <span className="font-semibold text-gray-700">Loša kontrola pristupa:</span>
+                <span
+                    className={`px-4 py-1 rounded-md font-bold text-sm ${
+                        config.accessControlEnabled
+                            ? 'bg-green-100 text-green-800'
+                            : 'bg-red-100 text-red-800'
+                    }`}
+                >
+                  {config.accessControlEnabled ? 'ZAŠTIĆENO' : 'RANJIVO'}
+                </span>
+                <Toggle checked={config.accessControlEnabled} onChange={toggleAccessControl} label={""}/>
             </div>
         </div>
     )

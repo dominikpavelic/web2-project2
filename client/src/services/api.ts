@@ -38,6 +38,11 @@ const configApi = {
     updateXSSProtection: async (enabled: boolean) => {
         const response = await api.post('/config/xss', {enabled});
         return response.data;
+    },
+
+    updateAccessControl: async (enabled: boolean) => {
+        const response = await api.post('/config/access-control', {enabled});
+        return response.data;
     }
 }
 

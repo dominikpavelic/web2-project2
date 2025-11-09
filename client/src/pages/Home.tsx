@@ -5,7 +5,7 @@ import { useSecurity } from "hooks";
 
 const Home: React.FC = () => {
 
-    const {config, toggleXSSProtection} = useSecurity();
+    const {config, toggleXSSProtection, toggleAccessControl} = useSecurity();
 
     return (
         <div className="space-y-8">
@@ -47,18 +47,18 @@ const Home: React.FC = () => {
                     <div className="bg-gray-100 rounded-md flex items-center gap-2 p-2">
                         <p className="font-semibold">Trenutni status:</p>
                         <span className={`font-bold rounded-md  px-4 py-2  ${
-                            config.xssProtection
+                            config.accessControlEnabled
                                 ? 'bg-green-100 text-green-800'
                                 : 'bg-red-100 text-red-800'
                         }`}>
-                            {config.xssProtection ? "Zaštićeno" : "Ranjivo"}
+                            {config.accessControlEnabled ? "Zaštićeno" : "Ranjivo"}
                         </span>
                     </div>
 
                     <div>
                         <Toggle
-                            checked={false}
-                            onChange={()=> console.log('Toggle Access Control')}
+                            checked={config.accessControlEnabled}
+                            onChange={toggleAccessControl}
                             label={"Uključi kontrolu pristupa"}
                         />
                     </div>
