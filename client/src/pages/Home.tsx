@@ -15,7 +15,7 @@ const Home: React.FC = () => {
                 </h2>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-2 gap-8">
                 <div className="card">
                     <h3 className="text-2xl font-bold text-primary">Ranjivost 1: Cross-site scripting (XSS)</h3>
                     <div className="bg-gray-100 rounded-md flex items-center gap-2 p-2">

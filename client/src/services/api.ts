@@ -33,6 +33,11 @@ const accessControlApi = {
     getAdminData: async () => {
         const response = await api.get('/access-control/admin');
         return response.data;
+    },
+
+    getUserProfile: async (userId: number) => {
+        const response = await api.get(`/access-control/user-profile/${userId}`);
+        return response.data;
     }
 }
 

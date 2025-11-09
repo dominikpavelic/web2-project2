@@ -31,21 +31,30 @@ const NavBar = () => {
                         </Link>
 
                         {user ? (
-                            <div className="flex items-center space-x-4">
-                                <div className="text-sm">
-                                    <span className="text-gray-600">Prijavljen kao: </span>
-                                    <span className="font-semibold text-gray-900">{user.username}</span>
-                                    <span className={`ml-2 ${user.role === 'admin' ? 'admin' : 'user'}`}>
+                            <>
+                                <Link
+                                    to={`/user-profile/${user.id}`}
+                                    className=" hover:text-primary font-medium mx-4"
+                                >
+                                    Moj profil
+                                </Link>
+                                <div className="flex items-center space-x-4">
+                                    <div className="text-sm">
+                                        <span className="text-gray-600">Prijavljen kao: </span>
+                                        <span className="font-semibold text-gray-900">{user.username}</span>
+                                        <span className={`ml-2 ${user.role === 'admin' ? 'admin' : 'user'}`}>
                                       {user.role}
                                     </span>
+                                    </div>
+                                    <button
+                                        onClick={handleLogout}
+                                        className="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary-dark transition"
+                                    >
+                                        Logout
+                                    </button>
                                 </div>
-                                <button
-                                    onClick={handleLogout}
-                                    className="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary-dark transition"
-                                >
-                                    Logout
-                                </button>
-                            </div>
+                            </>
+
                         ) : (
                             <Link
                                 to="/login"
