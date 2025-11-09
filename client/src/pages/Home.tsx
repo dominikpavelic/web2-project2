@@ -1,8 +1,11 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
+import { Toggle } from "components";
+import { useSecurity } from "hooks";
 
 const Home: React.FC = () => {
 
+    const {config, toggleXSSProtection} = useSecurity();
 
     return (
         <div className="space-y-8">
@@ -17,13 +20,21 @@ const Home: React.FC = () => {
                     <h3 className="text-2xl font-bold text-primary">Ranjivost 1: Cross-site scripting (XSS)</h3>
                     <div className="bg-gray-100 rounded-md flex items-center gap-2 p-2">
                         <p className="font-semibold">Trenutni status:</p>
-                        <span className="font-bold rounded-md bg-red-100 text-red-800 px-4 py-2 ">Ranjivo</span>
+                        <span className={`font-bold rounded-md  px-4 py-2  ${
+                            config.xssProtection
+                                ? 'bg-green-100 text-green-800'
+                                : 'bg-red-100 text-red-800'
+                        }`}>
+                            {config.xssProtection ? "Zaštićeno" : "Ranjivo"}
+                        </span>
                     </div>
 
                     <div>
-                        <button className="border m-2 p-2" onClick={() => console.log("toggle")}>
-                            Toggle
-                        </button>
+                        <Toggle
+                            checked={config.xssProtection}
+                            onChange={toggleXSSProtection}
+                            label={"Uključi XSS zaštitu"}
+                        />
                     </div>
 
                     <Link to="/xss-demo" className="btn btn-primary w-full text-center block">
@@ -35,14 +46,26 @@ const Home: React.FC = () => {
                     <h3 className="text-2xl font-bold text-primary">Ranjivost 2: Loša kontrola pristupa</h3>
                     <div className="bg-gray-100 rounded-md flex items-center gap-2 p-2">
                         <p className="font-semibold">Trenutni status:</p>
-                        <span className="font-bold rounded-md bg-red-100 text-red-800 px-4 py-2 ">Ranjivo</span>
+                        <span className={`font-bold rounded-md  px-4 py-2  ${
+                            config.xssProtection
+                                ? 'bg-green-100 text-green-800'
+                                : 'bg-red-100 text-red-800'
+                        }`}>
+                            {config.xssProtection ? "Zaštićeno" : "Ranjivo"}
+                        </span>
                     </div>
 
                     <div>
-                        <button className="border m-2 p-2" onClick={() => console.log("toggle")}>
-                            Toggle
-                        </button>
+                        <Toggle
+                            checked={false}
+                            onChange={()=> console.log('Toggle Access Control')}
+                            label={"Uključi kontrolu pristupa"}
+                        />
                     </div>
+
+                    <Link to="/acces-control-demo" className="btn btn-primary w-full text-center block">
+                        Idi na demo kontrole pristupa
+                    </Link>
                 </div>
             </div>
         </div>

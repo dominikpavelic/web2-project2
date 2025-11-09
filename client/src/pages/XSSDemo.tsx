@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import type { Comment } from "../types";
+import type { Comment } from "types";
 import { xssApi } from "services";
 
 const XSS_EXAMPLES = [
@@ -15,7 +15,7 @@ const XSSDemo = () => {
 
 
     useEffect(() => {
-        loadComments();
+        void loadComments();
     }, []);
 
     const loadComments = async () => {
