@@ -34,3 +34,11 @@ body {
 .input {
     @apply w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary;
 }
+
+.admin {
+    @apply bg-red-500 text-white rounded-full font-semibold px-3 py-1;
+}
+
+.user {
+    @apply bg-green-500 text-white rounded-full font-semibold px-3 py-1;
+}

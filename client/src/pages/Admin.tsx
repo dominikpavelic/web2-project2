@@ -1,4 +1,4 @@
-import { useSecurity } from "hooks";
+import { useAuth, useSecurity } from "hooks";
 import { useEffect, useState } from "react";
 import type { AdminData, User } from "types";
 import { accessControlApi } from "services";
@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 
 const Admin = () => {
     const {config} = useSecurity();
+    const {user: currentUser} = useAuth();
     const [data, setData] = useState<{
         accessGranted: boolean;
         adminData: AdminData[];
@@ -38,6 +39,11 @@ const Admin = () => {
                     <Link to="/" className="btn btn-primary">
                         Početna stranica
                     </Link>
+                    {!currentUser && (
+                        <Link to="/login" className="btn btn-primary">
+                            Prijava
+                        </Link>
+                    )}
                 </div>
 
             </div>
@@ -59,13 +65,6 @@ const Admin = () => {
                     ? 'Korisnici se autentificiraju. Aplikacija je zaštićena.'
                     : 'Nema autentifikacije korisnika. Aplikacije je ranjiva.'}
             </div>
-
-            {!config.accessControlEnabled && (
-                <div className="bg-blue-100 border border-blue-400 text-blue-800 p-4 rounded-lg mb-6">
-                    <strong>Napomena:</strong> Kontrola pristupa je onemogućena. Svi korisnici imaju pristup admin stranici.
-                </div>
-            )}
-
             <div className="mb-8">
                 <h3 className="text-2xl font-bold text-primary mb-4">Osjetljivi admin podaci:</h3>
                 <div className="grid gap-4">
