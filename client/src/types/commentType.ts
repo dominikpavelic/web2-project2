@@ -1,8 +1,8 @@
-interface Comment {
+interface CommentType {
     id: number;
     username: string;
     text: string;
     timestamp: string;
 }
 
-export type { Comment };
+export type { CommentType };

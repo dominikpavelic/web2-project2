@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import type { Comment } from "types";
+import type { CommentType } from "types";
 import { xssApi } from "services";
 import { useSecurity } from "hooks";
-import { Toggle } from "components";
+import { Comment, Toggle } from "components";
 import * as React from "react";
 
 const XSS_EXAMPLES = [
@@ -14,7 +14,7 @@ const XSS_EXAMPLES = [
 ];
 const XSSDemo = () => {
     const {config, toggleXSSProtection} = useSecurity();
-    const [comments, setComments] = useState<Comment[]>([]);
+    const [comments, setComments] = useState<CommentType[]>([]);
     const [commentText, setCommentText] = useState<string>();
 
 
@@ -137,27 +137,12 @@ const XSSDemo = () => {
                 </div>
 
                 {comments.length === 0 ? (
-                    <p>Trenutno nema objavljenih komentara.</p>
+                    <p className="text-center text-gray-500">Trenutno nema objavljenih komentara.</p>
                 ) : (
                     <div className="space-y-4">
-
                         {comments.map((comment) => (
-                            <div key={comment.id} className="bg-gray-100 border border-gray-300 rounded-lg p-4">
-                                <div className="flex justify-between items-center mb-2">
-                                    <strong className="text-primary">{comment.username}</strong>
-                                    <span className="text-sm text-gray-500">{new Date(comment.timestamp).toLocaleString()}</span>
-                                </div>
-
-                                <div className="text-gray-800">
-                                    {config.xssProtection ? (
-                                        <div>{comment.text}</div>
-                                    ) : (
-                                        <div dangerouslySetInnerHTML={{__html: comment.text}}/>
-                                    )}
-                                </div>
-                            </div>
+                            <Comment comment={comment}/>
                         ))}
-
                     </div>
 
                 )}
