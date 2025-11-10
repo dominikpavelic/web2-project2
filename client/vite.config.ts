@@ -8,6 +8,18 @@ export default defineConfig({
         react(),
         tailwindcss()
     ],
+    build: {
+        outDir: 'dist',
+        emptyOutDir: true
+    },
+    server: {
+        proxy: {
+            '/api': {
+                target: process.env.API_URL || 'http://localhost:3000',
+                changeOrigin: true,
+            }
+        }
+    },
 
     resolve: {
         alias: {
