@@ -9,8 +9,6 @@ const XSS_EXAMPLES = [
     `<img src=x onError="alert('XSS Attack!')" alt="attack"/>`,
     `<img src=x onError="alert(document.cookie)" alt="attack"/>`,
     `<iframe src="javascript:alert('XSS from iframe')"></iframe>`,
-    `<video src=x onError=alert("XSS from video")></video>`,
-    `<audio src=x onError=alert("XSS from audio")></audio>`,
 ];
 const XSSDemo = () => {
     const {config} = useSecurity();
