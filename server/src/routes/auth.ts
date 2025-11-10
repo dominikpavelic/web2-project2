@@ -48,7 +48,7 @@ router.get('/current', (req: Request, res: Response) => {
     if (req.session.user) {
         res.json({user: req.session.user})
     } else {
-        res.status(401).json({user: null})
+        res.json({user: null})
     }
 });
 
