@@ -112,13 +112,13 @@ const UserProfile = () => {
                             to="/user-profile/2"
                             className="flex items-center gap-3 p-4 bg-white rounded-lg hover:shadow-md transition"
                         >
-                            <span className="font-medium">Korisnički ID 2 (ivo)</span>
+                            <span className="font-medium">Korisnički ID 2 (pero)</span>
                         </Link>
                         <Link
                             to="/user-profile/3"
                             className="flex items-center gap-3 p-4 bg-white rounded-lg hover:shadow-md transition"
                         >
-                            <span className="font-medium">Korisnički ID 3 (pero)</span>
+                            <span className="font-medium">Korisnički ID 3 (ivo)</span>
                         </Link>
                     </div>
                 </div>

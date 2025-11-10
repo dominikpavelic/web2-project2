@@ -27,7 +27,7 @@ const NavBar = () => {
                         </Link>
 
                         <Link to="/admin" className="hover:text-primary font-medium mx-4">
-                            Admin Page
+                            Admin
                         </Link>
 
                         {user ? (
